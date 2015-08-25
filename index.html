@@ -4,9 +4,8 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>Python Ljubljana Meetup 2015 I</title>
+		<title>Varnost in zasebnost na internetu</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 		<meta name="author" content="Hakim El Hattab">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -27,16 +26,9 @@
 			link.type = 'text/css';
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
-window.addEventListener("load", function() {
-    var f = document.getElementById('flashing');
-    setInterval(function() {
-        f.style.display = (f.style.display == 'none' ? '' : 'none');
-    }, 1000);
+            window.addEventListener("load", function() {
 
-}, false);
-
-
-
+            }, false);
 		</script>
 
 		<!--[if lt IE 9]>
@@ -50,287 +42,129 @@ window.addEventListener("load", function() {
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-				<section>
-					<h1>SoC</h1>
-					<h3>Snakes on Chip</h3>
-					<p>
-					  = Snakes on a Plane + System on Chip
-					</p>
-					<p style="font-size: 80%" id="flashing"> &lt;blink&gt; WARNING: This presentation contains flashing images!&lt;/blink&gt;</p>
-				</section>
 
-				<section>
-					<p style="font-size: 200%">self.info()</p>
-				</section>
+                <section data-markdown>
+                    <script type="text/template">
+                        # Varnost in zasebnost na internetu
 
-				<section data-background="#000000">
-				  <img src="assets/pyramid-negative.svg" alt="" style="float: left; width:40%; border: none; background: none;" />
-				  <img src="assets/tshirt.jpg"  alt="" style="border: none; background: none;" />
-				</section>
+                        dan 2
 
-				<section>
-					<h2> ... or maybe ...</h2>
-				</section>
-				<section>
-					<h2>... oh wait </h2>
-				</section>
-				<section>
-					<h2>Is python dead (in web dev)?</h2>
-					<ul>
-					  <li>PHP + jquery (simple Slovenian apps, "YOLO")</li>
-					  <li>JavaScript (the sword of the modern hipster dev/longboardJS)</li>
-					  <li>Scala, Go, Rust (for the balanced gentleman)</li>
-					  <li>Haskell, Factor and [add your insane language] </li>
-					</ul>
-				</section>
+                        Jaka Hudoklin, Andraž Brodnik
+                    </script>
+                </section>
 
-				<section >
-				  <h2>... beer time</h2>
-				</section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Pregled I
 
-				<section data-background="assets/crazy.gif">
-				  <h2 style="color: white;">...people have crazy ideas ...</h2>
-				</section>
-				 
-				<section data-background="assets/terminator.gif">
-				  <h2 style="color: white;">... like python on a chip ...</h2>
-				</section>
-
-				<section>
-				  <h2>... how do we found crazy stuff...</h2>
-				</section>
-
-				<section>
-				  <h2 style="color: green;">... Kickstarter</h2>
-				</section>
-
-				<section data-background="assets/kickstarter.png">
-				</section>
-
-				<section>
-				  <h2>MicroPython</h2>
-				  <p>"Micro Python is a lean and fast implementation of the Python 3 programming language that is optimised to run on a microcontroller.</p>
-				  <ul>
-				    <li>Python 3.4</li>
-				    <li>Special implementation (no CPython)</li>
-				    <li>Small RAM usage</li>
-				  </ul>
-
-				</section>
+                        - Povezovanje v internet
+                        - Varna povezava (TLS/SSL, kaj je klucavnica v kotu brskalnika)
+                        - SSL certifikati (opozorila o neveljavnih certifikatih, zakaj dodati SIGOV korenski cert,)
+                        - Piskotki
+                        - Facebook (kako nastvaviti z kom delimo stvari, problematika appov, ki rabijo cudne permisne)
+                        - Vsebine ki jih objavljamo (sane premislek)
+                        - Email (GPG, spoffing headerja)
 
 
-<section>
-  <h2>While True ...</h2>
-<pre>
-<code data-trim>
-import pyb
-led = pyb.LED(2)
-while True:
-    led.toggle()
-    pyb.delay(1000)
-</code>
-</pre>
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Pregled II
 
-  <h2>SPI</h2>
-<pre style='width: 120%'>
-<code data-trim>
-from pyb import SPI
-spi = SPI(1, SPI.MASTER, baudrate=600000, polarity=1, phase=0, crc=0x7)
+                        - Gesla (kaj je varno geslo v sloveniji, password managerji, lastpass, onepassword) (+)
+                        - 2 faktorska avtentikacija (primer facebook, google, programi za 2 faktorsko avtentikacijo, yubikey) (+)
+                        - Varnost nasega racunalnika (posodobitve, antivirusi) (+)
+                        - Anonimno brskanje po spletu (TOR, facebook, kočljive vsebine, darkweb) (+)
+                        - Varnost DNS prometa (dnscrypt) (+)
+                        - Uporaba alternativnih varnih sistemov (talis linux) (+)
 
-data = spi.send_recv(b'1234')        # send 4 bytes and receive 4 bytes
-buf = bytearray(4)
-spi.send_recv(b'1234', buf)          # send 4 bytes and receive 4 into buf
-spi.send_recv(buf, buf)              # send/recv 4 bytes from/to buf
-</code>
-</pre>
-</section>
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Povezovanje v internet
 
 
-				<section data-background="assets/sparta.gif">
-				  <div style="background:rgba(0, 0, 0,0.6);">
-					<h1 style="padding: 5px; color: white;">Madness !!!</h1>
-				  </div>
-				</section>
+                    </script>
+                </section>
 
-				<section>
-				  <h2>Use cases</h2>
-				  <ul>
-				    <li>"from top to button" learning</li>
-				    <li>Testing of SPI and I2C enabled devices</li>
-				    <li>Writing functional tests (in python) for hardware</li>
-				    <li>...</li>
-				  </ul>
-				</section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Varne povezave
 
-				<section>
-					<h2>... you need a microcontroller...</h2>
-				</section>
+                    </script>
+                </section>
 
-				<section>
-					<h2>Pyboard</h2>
-				  <ul>
-				    <li>Powerfull ARM (Cortex-M4)</li>
-				    <li>1 Mbyte Flash</li>
-				    <li>192Kbytes of RAM</li>
-				    <li>2x I2C, 2x SPI ...</li>
-				    <li>43 $</li>
-				  </ul>
-				</section>
-
-				<section>
-				  <img src="assets/pyb.jpg" alt="" />
-				</section>
-
-				<section>
-					<h2>... but I want wifi ...</h2>
-				</section>
-
-				<section>
-				  <h2>... how do we found crazy stuff...</h2>
-				</section>
-
-				<section>
-				  <h2 style="color: green;">... Kickstarter</h2>
-				</section>
-
-				<section data-background="assets/wipy.png">
-				</section>
-
-				<section>
-					<h2>WiPy</h2>
-				  <ul>
-				    <li>Cortex-M4 @ 80MHz (TI CC3200) (Wifi on board)</li>
-				    <li>2 Mbyte Flash</li>
-				    <li>256Kbytes of RAM</li>
-				    <li>Super low power 850uA (Wifi on)</li>
-				    <li>29 Eur (preorder)</li>
-				  </ul>
-				</section>
-
-				<section>
-					<h2>... you don't have the hardware ...</h2>
-				</section>
-
-				<section data-background="assets/matrix.gif">
-					<h2 style="color:white">... what if I told you, I don't have it either...</h2>
-				</section>
-
-				<section>
-					<h2>... but I have ...</h2>
-				</section>
-
-				<section>
-				  <h3>this peace of s******</h3>
-				  <img src="assets/esp.jpg" alt="" />
-				</section>
-
-				<section>
-					<h2>ESP8266</h2>
-				  <ul>
-				    <li>One of my favorite chips</li>
-				    <li>SoC</li>
-				    <li>802.11 b/g/n</li>
-				    <li>Wi-Fi Direct (P2P), soft-AP</li>
-				    <li>Integrated TCP/IP protocol stack</li>
-				    <li>SPI</li>
-				    <li>3$ on PCB</li>
-				  </ul>
-				</section>
-
-				<section>
-					<h2>MicroPython + ESP8266</h2>
-				  <ul>
-				    <li>Experimental support</li>
-				    <li>GPIO</li>
-				    <li>Wifi connect</li>
-				    <li>Sockets</li>
-				    <li>SPI not yet supported</li>
-				  </ul>
-				</section>
-
-				<section>
-					<h2>DEMO</h2>
-				</section>
-
-<section>
-  <h2>pyramid</h2>
-  <small>This slide contains product placement</small>
-<pre>
-<code style="max-height: none" data-trim>
-from wsgiref.simple_server import make_server
-# from Ponzi_scheme import pyramid
-from pyramid.config import Configurator
+                <section data-markdown>
+                    <script type="text/template">
+                        ## SSL certifikati
 
 
-def pizza_view(request):
-    # magic lxml + requests code that orders pizza
-    return "The pizza has been ordered %s" % request.user_agent
+                    </script>
+                </section>
 
-if __name__ == '__main__':
-    config = Configurator()
-    config.add_route('main', '/')
-    config.add_view(
-        pizza_view,
-        route_name='main',
-        renderer='string',
-        request_method='POST'
-    )
-    app = config.make_wsgi_app()
-    server = make_server('0.0.0.0', 8081, app)
-    server.serve_forever()
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Piskotki
 
-</code>
-</pre>
 
-</section>
-				<section data-background-video="assets/esp.ogg">
-				</section>
+                    </script>
+                </section>
 
-<section style="padding: 0px">
-<pre>
-<code style="max-height: 120%; font-size: 100%" data-trim>
-import pyb
-import esp
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Facebook
 
-# Connect to wifi
-esp.connect('brodul_lab', 'lablablab')
+                    </script>
+                </section>
 
-def socket_callback(socket, data):
-    print(data)
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Objavljanje vsebin
 
-raw_http = """POST / HTTP/1.1
-User-Agent: ESP8266 madafakkaa
-Host: pizza.brodul.org
-Accept: */*
-MIME-Version: 1.0
-Content-type: text/plain; charset=utf-8
+                    </script>
+                </section>
 
-I want pizza.
-"""
-pin = pyb.Pin(0, pyb.Pin.OUT_PP)
-while True:
-    if pin.value():
-        soc = esp.socket()
-        soc.onrecv(socket_callback)
-        soc.connect(('192.40.56.62', 8081))
-        soc.send(raw_http)
-        pyb.delay(1000)
-        del soc
-    pyb.delay(20)
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Elektronska pošta
 
-</code>
-</pre>
+                    </script>
+                </section>
 
-</section>
 
-				<section data-background="assets/robot.jpg">
-				  <h1 style="color: white">TNX :3</h1>
-				</section>
+                <!-- offline del -->
 
-				<section data-background="assets/robot.jpg">
-				  <h2 style="color: white">questions?</h2>
-				  <h3 style="color: white">@brodul</h3>
-				</section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Gesla
+
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## 2 faktorksa avtentifikacija
+
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Anonimno brskanje po spletu
+
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Uporaba alternativnih varnih sistemov
+
+                    </script>
+                </section>
+
 
 			</div>
 
